@@ -1,7 +1,7 @@
 # YET ANOTHER WEB CRAWLER PENTESTING TOOL
 ## YAW-CPT
 **by andreiplsno**
-s
+
 ## This project is under development and you may encounter bugs!
 
 YAW-CPT is a penetration testing tool designed to automatically detect the nature of links before crawling trough them.
