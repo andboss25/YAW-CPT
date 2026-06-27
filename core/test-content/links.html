@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Unique URL Test Page</title>
+
+    <link rel="canonical" href="/canonical">
+    <link rel="alternate" href="https://example.com/alternate" hreflang="en">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preload" href="/fonts/font.woff2" as="font">
+    <link rel="prefetch" href="https://cdn.example.com/prefetch.js">
+    <link rel="preconnect" href="https://api.example.com">
+    <link rel="dns-prefetch" href="https://static.example.org">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <meta property="og:url" content="https://mysite.example/page">
+    <meta name="twitter:url" content="https://twitter.example/page">
+    <meta http-equiv="refresh" content="60; url=/refresh-target">
+
+    <base href="https://base.example/">
+
+    <style>
+        body {
+            background-image: url('/images/background.jpg');
+            cursor: url('/cursors/cursor.cur'), auto;
+        }
+
+        .banner {
+            background-image: url("https://images.example.com/banner.png");
+        }
+    </style>
+
+    <script src="/js/main.js"></script>
+
+    <script>
+        const internal = "/js/internal-config.json";
+        const external = "https://api.example.com/config";
+
+        fetch("/api/users");
+        fetch("https://jsonplaceholder.typicode.com/posts");
+
+        navigator.sendBeacon("/analytics/beacon");
+
+        const img = new Image();
+        img.src = "/images/runtime.png";
+
+        const script = document.createElement("script");
+        script.src = "/js/dynamic.js";
+        document.head.appendChild(script);
+
+        location.href = "/redirect";
+
+        history.pushState({}, "", "/history-entry");
+
+        window.open("https://openai.com");
+
+        const worker = new Worker("/workers/main-worker.js");
+
+        const ws = new WebSocket("wss://echo.websocket.events");
+    </script>
+</head>
+<body>
+
+<h1>Unique URL Test Page</h1>
+
+<a href="/home">Internal Link</a>
+<a href="https://www.wikipedia.org">External Link</a>
+
+<img src="/images/photo.jpg" alt="Photo">
+
+<picture>
+    <source srcset="/images/photo-large.webp">
+    <img src="/images/photo-small.jpg">
+</picture>
+
+<video controls poster="/images/poster.jpg">
+    <source src="/media/video.mp4" type="video/mp4">
+</video>
+
+<audio controls>
+    <source src="/media/audio.mp3" type="audio/mpeg">
+</audio>
+
+<iframe src="/embedded/page.html"></iframe>
+
+<embed src="/files/document.pdf">
+
+<object data="/files/data.bin"></object>
+
+<form action="/submit" method="post">
+    <input type="submit">
+</form>
+
+<button formaction="/button-submit">Submit</button>
+
+<map name="map">
+    <area shape="rect" coords="0,0,50,50" href="/map-link">
+</map>
+
+<img src="/images/map.jpg" usemap="#map">
+
+<svg width="200" height="50">
+    <a href="/svg-link">
+        <text x="0" y="20">SVG Link</text>
+    </a>
+
+    <image href="/images/svg-image.png" width="50" height="50"/>
+</svg>
+
+<blockquote cite="https://quotes.example.com/source">
+    Example blockquote.
+</blockquote>
+
+<q cite="/quotes/reference">
+    Inline quote.
+</q>
+
+<del cite="/history/deleted">Deleted</del>
+
+<ins cite="https://changes.example.com/revision">
+    Inserted
+</ins>
+
+<div
+    data-url="/data/internal.json"
+    data-external="https://data.example.com/file.json">
+</div>
+
+<div style="background-image:url('/images/inline-background.png');"></div>
+
+<img loading="lazy" src="/images/lazy.jpg">
+
+<img
+    src="/images/src.jpg"
+    srcset="/images/src-1x.jpg 1x, https://cdn.example.com/src-2x.jpg 2x">
+
+<video>
+    <track src="/captions/en.vtt" kind="captions">
+</video>
+
+<input type="image" src="/images/button.png">
+
+<a href="/downloads/archive.zip" download>Download</a>
+
+<a href="/ping-target" ping="https://analytics.example.com/ping">
+    Ping Link
+</a>
+
+<template>
+    <a href="/template-link">Template Link</a>
+</template>
+
+<noscript>
+    <a href="/noscript-page">Noscript Link</a>
+</noscript>
+
+<script type="application/json">
+{
+    "internal": "/config/app.json",
+    "external": "https://config.example.com/app.json"
+}
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://example.org/page"
+}
+</script>
+
+<!-- /comment/internal -->
+<!-- https://comments.example.com/reference -->
+
+</body>
+</html>
