@@ -17,4 +17,6 @@ Current and planed features:
 
 TODO: add more filters
 TODO: document the tool
+TODO: add those caches bro
 TODO: add the requirements.txt file
+TODO: make scoring based and add checks by sending requests too

@@ -8,6 +8,7 @@ def find_links(data):
     results.extend(re.findall(r"https://[a-zA-Z./?=0-9&-]+",data))
     results.extend(re.findall(r"'/[a-zA-Z./?=0-9&-]+'",data))
     results.extend(re.findall(r'"/[a-zA-Z./?=0-9&-]+"',data))
+    # TODO add a special category for this type of string : ``
     results.extend(re.findall(r' /[a-zA-Z./?=0-9&-]+',data))
 
     # for some special cases
@@ -39,7 +40,6 @@ def find_links(data):
     results.extend(doubleslash_anomaly)
             
     results = list(set(results))
-
     return results
 
 if __name__ == "__main__":

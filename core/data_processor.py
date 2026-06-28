@@ -1,37 +1,19 @@
-
+import sys
 from urllib.parse import urlsplit
+import core.load_scripts
 
-def process_data(results:list[str],root_loc:str):
-    style_extensions = [
-        '.css','.js',
-        '.ico','.png','.jpg','.webp',
-        '.mp4','.avif','.mov',
-        '.wav','.mp3'
-    ]
+sys.dont_write_bytecode = True
 
-    style_keywords = [
-        'cdn','javascript','css','js'
-    ]
 
-    potentially_interesting_extensions = [
-        '.json','.xml'
-        '.pdf','.docx'
-    ]
-
-    interesting_extensions = [
-        '.php','.aspx','.db'
-    ]
-
-    interesting_keywords = [
-        'api','admin'
-    ]
-
+def process_data(results:list[str],root_loc:str,display_prefrences:dict):
+    detection_functions = core.load_scripts.load_scan_functions()
     root_netloc = urlsplit(root_loc).netloc
     root_scheme = urlsplit(root_loc).scheme
 
     data = []
 
     for url in results:
+        # Basic scan before scripted scan
         this_url = {}
         parsed_url = urlsplit(url)
 
@@ -50,26 +32,25 @@ def process_data(results:list[str],root_loc:str):
         else:
             this_url['has_query'] = False
 
-        if any(elem in parsed_url.path for elem in style_extensions) or any(elem in url for elem in style_keywords):
-            this_url['is_style'] = True
-        else:
-            this_url['is_style'] = False
-
-        if any(elem in parsed_url.path for elem in potentially_interesting_extensions):
-            this_url['potentially_interesting'] = True
-        else:
-            this_url['potentially_interesting'] = False
-
-        if any((elem in parsed_url.path for elem in interesting_extensions ) or ( interesting_keywords in url )):
-            this_url['interesting'] = True
-        else:
-            this_url['interesting'] = False
-
-        if this_url['interesting'] == False and this_url['alien'] == False and this_url['is_style'] == False and this_url['potentially_interesting'] == False:
-            this_url['misc'] = True
-        else:
-            this_url['misc'] = False
-
-
         data.append(this_url)
+
+        # Advanced scan
+        for scan_function in detection_functions:
+            this_url = scan_function(url,parsed_url,this_url,display_prefrences)
+        
+        
     return data
+
+def post_process(links:list[dict]):
+    link_list = {}
+    data_pool = []
+    for link in links:
+        if link_list.get(link['url']) == None:
+            data_pool.append(link)
+            link_list[link['url']] = True
+        else:
+            pass
+
+    return data_pool
+
+        
